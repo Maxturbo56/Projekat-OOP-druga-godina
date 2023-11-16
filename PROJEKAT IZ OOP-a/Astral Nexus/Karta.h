@@ -25,7 +25,7 @@ public:
     // ------------------------------- //
 };
 
-enum tip_Karte{NAPAD, ODBRANA, MAGE, BOARD};  //Enumeracija TIPa karte.
+enum tip_Karte{NAPAD, ODBRANA, MAGE, BOARD, SPECIFIC};  //Enumeracija TIPa karte.
 
 class Karta{ //standardna klasa za predstavljanje svih karti u Astral Nexus - u 
 

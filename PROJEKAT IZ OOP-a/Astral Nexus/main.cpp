@@ -10,6 +10,8 @@ int main()
     dva = runda.Dodaj_Igraca();
     runda.Smjesti_Igrace(jedan, dva);
 
+    dva.Build_Deck();
+
 
     return 0;
 }

@@ -41,4 +41,3 @@ Karta Karta::Init_Karta(string ime_Karte, int vrijednost_Karte, int broj, tip_Ka
     return obrada;
 }
 
-

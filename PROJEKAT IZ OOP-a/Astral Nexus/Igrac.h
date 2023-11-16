@@ -22,6 +22,10 @@ class Player{
 public:
 
     void Build_Deck(); //
+    void Shuffle_Deck();
+
+    void Draw_Hand();
+    void Draw();
 
 
     // Funckije kroz koje se vidi koje karte se nalaze u kojem vektoru igrača ---------------- //
