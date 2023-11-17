@@ -89,9 +89,12 @@ void Player::Build_Deck(string deck_Name)
     // ------------------- CITANJE BAZE ------------------- //
 
     vector <string> linije_Baze;
-    string linija, one, two;
-    string ime_Karte;
-    int vrijednost_Karte, broj_Karte;
+    string linija;
+
+    // ---------- KARTA ---------- //
+
+    string name_of_Card;
+    int value_of_Card, index_of_Card;
 
     ifstream file_IN;
 
@@ -108,20 +111,24 @@ void Player::Build_Deck(string deck_Name)
 
     for(int i = 0; i < linije_Baze.size(); i++)
     {
-        linija = linije_Baze[i];
-        
-        if(linija == "#")
+        if(linije_Baze[i] == "#")
         {
-            one = linije_Baze[i + 1];
-            two = linije_Baze[i + 3];
-            broj_Karte = stoi(one);
-            cout<<"Broj karte : "<<broj_Karte<<endl;
-            ime_Karte = linije_Baze[i + 2];
-            cout<<"Ime karte : "<<ime_Karte<<endl;
-            vrijednost_Karte = stoi(two);
-            cout<<"Vrijednost karte : "<<vrijednost_Karte<<endl;
-            obrada = obrada.Init_Karta(ime_Karte, vrijednost_Karte, broj_Karte, 1);
-            this->deck.push_back(obrada);
+            name_of_Card = linije_Baze[i + 2];
+            value_of_Card = stoi(linije_Baze[i + 3]);
+            index_of_Card = stoi(linije_Baze[i + 1]);
+            // ------------ INICIJALIZACIJA KARTE -------------- //
+            obrada.set_Naziv(name_of_Card);
+            cout<<endl<<"Ime obrade : "<<obrada.get_Naziv()<<endl;
+            obrada.set_Broj(index_of_Card);
+            cout<<endl<<"Index obrade : "<<obrada.get_Broj()<<endl;
+            obrada.set_Vrijednost(value_of_Card);
+            cout<<endl<<"Vrijednost obrade : "<<obrada.get_Vrijednost()<<endl;
+            deck.push_back(obrada);
+            cout<<"Obrada dodana u spil!"<<endl;
+        }
+        else 
+        {
+            continue;
         }
     }
 }

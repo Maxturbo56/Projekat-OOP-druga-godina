@@ -28,6 +28,9 @@ int main()
     }
 
     // -------------------- MAIN --------------------- //
+
+    // SETUP TO PLAY
+
     Runda runda;
     Player jedan, dva;
     cout<<"Hello, Mage!"<<endl;
@@ -60,6 +63,7 @@ int main()
     dva.Draw_Hand();
     dva.See_Hand();
 
+    // ------- THE GAMEPLAY LOOP ---------- //
 
     return 0;
 }
