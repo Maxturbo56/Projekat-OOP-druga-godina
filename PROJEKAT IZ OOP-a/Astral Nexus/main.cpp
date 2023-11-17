@@ -3,7 +3,7 @@
 
 int main()
 {
-
+    string user_Input;
     string user;
     string pass;
 
@@ -36,10 +36,18 @@ int main()
     dva = runda.Dodaj_Igraca();
     runda.Smjesti_Igrace(jedan, dva);
 
-    jedan.Build_Deck();
+    cout<<"Igrac jedan molimo unesite ime spila koji zelite igrati : "<<endl;
+    cin>>user_Input;
+    jedan.set_Deck_Name(user_Input);
+
+    cout<<"Igrac dva molimo unesite ime spila koji zelite igrati : "<<endl;
+    cin>>user_Input;
+    dva.set_Deck_Name(user_Input);
+
+    jedan.Build_Deck(jedan.get_Deck_Name());
     jedan.Shuffle_Deck();
     
-    dva.Build_Deck();
+    dva.Build_Deck(dva.get_Deck_Name());
     dva.Shuffle_Deck();
 
     cout<<"Karte prvog igraca : "<<endl; 

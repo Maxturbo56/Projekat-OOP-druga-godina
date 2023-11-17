@@ -46,13 +46,13 @@ public:
     ~Karta() = default;
 
     // Instanca ------------- ˘
-    Karta Init_Karta(string ime_Karte, int vrijednost_Karte, int broj, tip_Karte tip);
+    Karta Init_Karta(string ime_Karte, int vrijednost_Karte, int broj, int tip);
 
     // --------- SETTERI ---------- //
 
     void set_Naziv(string ime);
     void set_Vrijednost(int broj);
-    void set_Tip(tip_Karte type);
+    void set_Tip(int tip);
     void set_Broj(int broj);
 
     // --------- GETTERI ---------- //

@@ -19,10 +19,11 @@ class Player{
 
     int health_Points; //Zdravlje igrača
     string ime;
+    string ime_decka;
 
 public:
 
-    void Build_Deck(); //
+    void Build_Deck(string deck_Name); //
     void Shuffle_Deck();
 
     void Draw_Hand();
@@ -48,12 +49,14 @@ public:
     void set_Ime(string naziv);
     void set_HP(int broj);
     void set_Current(Karta karta);
+    void set_Deck_Name(string rijec);
 
     // --------- GETTERI ---------- //
 
     string get_Ime();
     int get_HP();
     Karta get_Current();
+    string get_Deck_Name();
 
     // ------------------------------- //
 };

@@ -5,7 +5,7 @@
 // ---- Setteri Karte ---------- //
 void Karta::set_Naziv(string ime){this->naziv = ime;}
 void Karta::set_Vrijednost(int broj){this->vrijednost = broj;}
-void Karta::set_Tip(tip_Karte type){this->tip = type;}
+void Karta::set_Tip(int type){this->tip = (tip_Karte)tip;}
 void Karta::set_Broj(int broj){this->redni_Broj = broj;}
 
 //Keyword 
@@ -31,7 +31,7 @@ Karta::Karta()
 }
 
 // Instanca ------------- ˘
-Karta Karta::Init_Karta(string ime_Karte, int vrijednost_Karte, int broj, tip_Karte tip)
+Karta Karta::Init_Karta(string ime_Karte, int vrijednost_Karte, int broj, int tip)
 {   
     Karta obrada;
     obrada.set_Naziv(ime_Karte);

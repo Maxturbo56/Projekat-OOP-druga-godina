@@ -2,21 +2,24 @@
 // include THIS in "Astral_Nexus.cpp"
 
 #include "Igrac.h"
-#include "Data_dll.cpp"
+#include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include <string>
 
 // ---- Setteri Igrača ---------- //
 
 void Player::set_Ime(string naziv){this->ime = naziv;}
 void Player::set_HP(int broj){this->health_Points = broj;}
 void Player::set_Current(Karta karta){this->current = karta;}
+void Player::set_Deck_Name(string rijec){this->ime_decka = rijec;}	
 
 // ---- Getteri Igrača ---------- //
 
 string Player::get_Ime(){return this->ime;}
 int Player::get_HP(){return this->health_Points;}
 Karta Player::get_Current(){return this->current;}
+string Player::get_Deck_Name(){return this->ime_decka;}
 
 // ------ Implementacija (See_Deck, See_Hand, See_Discard) ------ //
 
@@ -76,27 +79,51 @@ Player :: Player()
     this->health_Points = 20;
 }
 
-void Player::Build_Deck()
+void Player::Build_Deck(string deck_Name)
 {
+    string name_of_Deck; 
+    name_of_Deck = deck_Name + ".txt"; 
+    cout<<"Deck name set to : "<<name_of_Deck<<endl;  	
     Karta obrada;
 
     // ------------------- CITANJE BAZE ------------------- //
 
     vector <string> linije_Baze;
-    string linija;
+    string linija, one, two;
+    string ime_Karte;
+    int vrijednost_Karte, broj_Karte;
 
     ifstream file_IN;
+
+    file_IN.open(name_of_Deck);
 
     while(getline(file_IN, linija))
     {
         linije_Baze.push_back(linija);
     }
 
+    file_IN.close();
 
+    // ------------------- KREIRANJE DECKA ------------------- //
 
-    /* PLACEHOLDER
-    obrada = obrada.Init_Karta("Karta 1", 1, 1, tip_Karte);
-    this->deck.push_back(obrada);*/
+    for(int i = 0; i < linije_Baze.size(); i++)
+    {
+        linija = linije_Baze[i];
+        
+        if(linija == "#")
+        {
+            one = linije_Baze[i + 1];
+            two = linije_Baze[i + 3];
+            broj_Karte = stoi(one);
+            cout<<"Broj karte : "<<broj_Karte<<endl;
+            ime_Karte = linije_Baze[i + 2];
+            cout<<"Ime karte : "<<ime_Karte<<endl;
+            vrijednost_Karte = stoi(two);
+            cout<<"Vrijednost karte : "<<vrijednost_Karte<<endl;
+            obrada = obrada.Init_Karta(ime_Karte, vrijednost_Karte, broj_Karte, 1);
+            this->deck.push_back(obrada);
+        }
+    }
 }
 
 void Player::Shuffle_Deck()
