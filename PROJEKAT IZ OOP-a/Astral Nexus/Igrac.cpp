@@ -2,9 +2,9 @@
 // include THIS in "Astral_Nexus.cpp"
 
 #include "Igrac.h"
-#include <stdlib.h>
+#include "Data_dll.cpp"
+#include <cstdlib>
 #include <ctime>
-
 
 // ---- Setteri Igrača ---------- //
 
@@ -27,7 +27,7 @@ void Player::See_Deck()
 
     for(int i = 0; i < deck.size(); i++)
     {
-        obrada = deck[i];
+        obrada = this->deck[i];
         cout<<i + 1<<" "<<obrada.get_Naziv()<<endl;
     }
 }
@@ -39,7 +39,7 @@ void Player::See_Hand()
 
     for(int i = 0; i < hand.size(); i++)
     {
-        obrada = hand[i];
+        obrada = this->hand[i];
         cout<<i + 1<<" "<<obrada.get_Naziv()<<endl;
     }
 }
@@ -78,39 +78,56 @@ Player :: Player()
 
 void Player::Build_Deck()
 {
-    // PLACEHOLDER
-
     Karta obrada;
-    obrada = obrada.Init_Karta("Karta 1", 1, 1, tip_Karte::MAGE);
-    deck.push_back(obrada);
-    obrada = obrada.Init_Karta("Karta 2", 2, 2, tip_Karte::MAGE);
-    deck.push_back(obrada);
-    obrada = obrada.Init_Karta("Karta 3", 3, 3, tip_Karte::MAGE);
-    deck.push_back(obrada);
-    obrada = obrada.Init_Karta("Karta 4", 4, 4, tip_Karte::MAGE);
-    deck.push_back(obrada); 
-    obrada = obrada.Init_Karta("Karta 5", 5, 5, tip_Karte::MAGE);
-    deck.push_back(obrada);
-    obrada = obrada.Init_Karta("Karta 6", 6, 6, tip_Karte::MAGE);
-    deck.push_back(obrada);
-    obrada = obrada.Init_Karta("Karta 7", 7, 7, tip_Karte::MAGE);
-    deck.push_back(obrada);
-    obrada = obrada.Init_Karta("Karta 8", 8, 8, tip_Karte::MAGE);
-    deck.push_back(obrada);
-    obrada = obrada.Init_Karta("Karta 9", 9, 9, tip_Karte::MAGE);
-    deck.push_back(obrada);
 
-    this->Draw_Hand();
+    // ------------------- CITANJE BAZE ------------------- //
+
+    vector <string> linije_Baze;
+    string linija;
+
+    ifstream file_IN;
+
+    while(getline(file_IN, linija))
+    {
+        linije_Baze.push_back(linija);
+    }
+
+
+
+    /* PLACEHOLDER
+    obrada = obrada.Init_Karta("Karta 1", 1, 1, tip_Karte);
+    this->deck.push_back(obrada);*/
 }
 
-/*void Player::Shuffle_Deck()
+void Player::Shuffle_Deck()
 {
-    srand(time(NULL));
-    srand(time(NULL));
-    int shuffler_Randomiser;
-    shuffler_Randomiser = rand()&deck.size()+1;
-    shuffle(deck.begin(), deck.end(), shuffler_Randomiser);
-}*/
+    cout<<"Shuffling deck..."<<endl;
+
+    int shuffle_one;
+    int shuffle_two;
+    Karta obrada;
+
+    for(int i = 0; i < 100; i++)
+    {   
+        shuffle_one = rand()%deck.size();
+        shuffle_two = rand()%deck.size();
+
+        if(shuffle_one != shuffle_two)
+        {
+            obrada = this->deck[shuffle_one];
+            this->deck[shuffle_one] = this->deck[shuffle_two];
+            this->deck[shuffle_two] = obrada;
+
+            cout<<"Swapped "<<shuffle_one<<" with "<<shuffle_two<<endl;
+        }
+        else
+        {
+            continue;
+        }
+    }
+
+    cout<<"Deck shuffled!"<<endl;
+}
 
 void Player::Draw_Hand()
 {  
@@ -118,16 +135,8 @@ void Player::Draw_Hand()
     for(int i = 0; i < 7; i++)
     {
         Karta temp;
-        temp = deck.back();
-        hand.push_back(temp);
-        deck.pop_back();        
-    }
-    
-    // Hand output ------------------------------
-    for(int i = 0; i < hand.size(); i++)
-    {
-        Karta obrada;
-        obrada = hand[i];
-        cout<<obrada.get_Naziv()<<" ";
+        temp = this->deck.back();
+        this->hand.push_back(temp);
+        this->deck.pop_back();        
     }
 }

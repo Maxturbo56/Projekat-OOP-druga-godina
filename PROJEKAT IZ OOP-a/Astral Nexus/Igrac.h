@@ -2,6 +2,7 @@
 
 #include "Karta.cpp"
 #include <vector>
+#include <fstream>
 
 class Player{
 
