@@ -65,5 +65,31 @@ int main()
 
     // ------- THE GAMEPLAY LOOP ---------- //
 
+    system("cls");
+
+    cout<<"MAGES, CLASH!"<<endl;
+
+    Sleep(400);
+
+    do{
+        jedan.Update();
+
+        cout<<jedan.get_Ime()<<" : Health Points : "<<jedan.get_HP()<<endl;
+        cout<<"Karta koja se igra : "<<jedan.get_Current().get_Naziv()<<endl<<endl;
+
+        cout<<"HAND ONE : "<<endl;
+        jedan.See_Hand();
+
+
+        cout<<endl<<endl<<"BOARD ONE : "<<endl;
+        jedan.See_Board();
+
+        cout<<endl<<endl<<endl<<dva.get_Ime()<<" : Health Points : "<<dva.get_HP()<<endl<<endl;
+        Sleep(300);
+        system("CLS");
+    }while(1);
+
+
+
     return 0;
 }

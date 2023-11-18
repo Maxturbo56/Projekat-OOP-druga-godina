@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include <windows.h>
 
 // ---- Setteri Igrača ---------- //
 
@@ -62,22 +63,27 @@ void Player::See_Discard()
 void Player::See_Board()
 {
     Karta obrada;
-    cout<<"Karte trenutno u discard - u : "<<endl<<endl;
+    cout<<"Karte trenutno u na BOARD - u : "<<endl<<endl;
 
-    for(int i = 0; i < board.size(); i++)
+    if(board.size() != 0)
     {
-        obrada = board[i];
-        cout<<i + 1<<" "<<obrada.get_Naziv()<<endl;
+        for(int i = 0; i < board.size(); i++)
+        {
+            obrada = board[i];
+            cout<<i + 1<<" "<<obrada.get_Naziv()<<"\t";
+        }
     }
 }
 
-// -------------- Konstruktor --------- //
+// -------------- KONSTRUKTOR --------- //
 
 Player :: Player()
 {
     this->ime = "undefined";
     this->health_Points = 20;
 }
+
+// --------- IZGRADANJA SPILA -------- //
 
 void Player::Build_Deck(string deck_Name)
 {
@@ -165,12 +171,72 @@ void Player::Shuffle_Deck()
 
 void Player::Draw_Hand()
 {  
-
     for(int i = 0; i < 7; i++)
     {
         Karta temp;
         temp = this->deck.back();
         this->hand.push_back(temp);
         this->deck.pop_back();        
+    }
+}
+
+void Player::Draw()
+{
+    Karta temp;
+    temp = this->deck.back();
+    this->hand.push_back(temp);
+    this->deck.pop_back();   
+}
+
+void Player::Discard_Card()
+{
+    
+}
+
+void Player::Play_Card()
+{
+    board.push_back(hand[current_Card_Index]);
+    hand.erase(hand.begin() + current_Card_Index);
+}
+
+void Player::Next_Card()
+{
+    if(current_Card_Index < hand.size() - 1)
+    {
+        current_Card_Index++;
+    }
+    else
+    {
+        current_Card_Index = 0;
+    }
+}
+
+void Player::Previous_Card()
+{
+    if(current_Card_Index > 0)
+    {
+        current_Card_Index--;
+    }
+    else
+    {
+        current_Card_Index = hand.size() - 1;
+    }
+}
+
+void Player::Update()
+{
+    current = hand[current_Card_Index];
+    cout<<"Trenutni index karte : "<<endl<<current_Card_Index<<endl;
+    if(GetKeyState('H') & 0x8000)
+	{
+        this->Next_Card();
+	}
+    else if(GetKeyState('J') & 0x8000)
+    {
+        this->Previous_Card();
+    }
+    else if(GetKeyState('K') & 0x8000)
+    {
+        this->Play_Card();
     }
 }

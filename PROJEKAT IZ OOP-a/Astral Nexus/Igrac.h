@@ -14,6 +14,7 @@ class Player{
 
     // -------------------- Trenutna Karta koja se igra ------------ //
     Karta current;
+    int current_Card_Index = 0;
 
     // ------- Vrijednosti Igrača ----------- //
 
@@ -37,8 +38,13 @@ public:
     void See_Discard();
     void See_Board();
 
-    void Play(Karta karta); // Odigraj kartu na board
-    void Discard(Karta karta); // Odbaci kartu u vektor 'discard'
+    void Play_Card(); // Odigraj kartu na board
+    void Discard_Card(); // Odbaci kartu u vektor 'discard'
+
+    void Next_Card();
+    void Previous_Card();
+
+    void Update(); // Update funkcija koja se poziva svaki put kada dodje red da igra THIS igrac
 
     Player();
 
