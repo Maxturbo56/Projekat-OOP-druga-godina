@@ -85,11 +85,16 @@ int main()
         jedan.See_Board();
 
         cout<<endl<<endl<<endl<<dva.get_Ime()<<" : Health Points : "<<dva.get_HP()<<endl<<endl;
+        
+        if(GetKeyState('Q') & 0x8000)
+        {
+            break;
+        }
         Sleep(300);
         system("CLS");
     }while(1);
 
 
-
+    system("helloworld.exe");
     return 0;
 }
