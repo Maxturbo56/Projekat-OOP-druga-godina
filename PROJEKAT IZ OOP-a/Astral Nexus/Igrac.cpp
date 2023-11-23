@@ -32,7 +32,7 @@ void Player::See_Deck()
     for(int i = 0; i < deck.size(); i++)
     {
         obrada = this->deck[i];
-        cout<<i + 1<<" "<<obrada.get_Naziv()<<endl;
+        cout<<i + 1<<" "<<obrada.get_Naziv()<<" ( "<<obrada.get_Vrijednost()<<" )"<<endl;
     }
 }
 
@@ -44,7 +44,7 @@ void Player::See_Hand()
     for(int i = 0; i < hand.size(); i++)
     {
         obrada = this->hand[i];
-        cout<<i + 1<<" "<<obrada.get_Naziv()<<endl;
+        cout<<i + 1<<" "<<obrada.get_Naziv()<<" ( "<<obrada.get_Vrijednost()<<" )\t";
     }
 }
 
@@ -56,21 +56,21 @@ void Player::See_Discard()
     for(int i = 0; i < discard_Pile.size(); i++)
     {
         obrada = discard_Pile[i];
-        cout<<i + 1<<" "<<obrada.get_Naziv()<<endl;
+        cout<<i + 1<<" "<<obrada.get_Naziv()<<" ( "<<obrada.get_Vrijednost()<<" )\t";
     }
 }
 
 void Player::See_Board()
 {
     Karta obrada;
-    cout<<"Karte trenutno u na BOARD - u : "<<endl<<endl;
+    cout<<"Karte trenutno u BOARD - u : "<<endl<<endl;
 
     if(board.size() != 0)
     {
         for(int i = 0; i < board.size(); i++)
         {
             obrada = board[i];
-            cout<<i + 1<<" "<<obrada.get_Naziv()<<"\t";
+            cout<<i + 1<<" "<<obrada.get_Naziv()<<" ( "<<obrada.get_Vrijednost()<<" )\t";
         }
     }
 }
@@ -139,6 +139,21 @@ void Player::Build_Deck(string deck_Name)
     }
 }
 
+int Player::get_Board_Value()
+{
+    return this->board_Value;
+}
+
+void Player::Calculate_Board_Value()
+{
+    int temp = 0;
+    for(int i = 0; i < board.size(); i++)
+    {
+        temp += board[i].get_Vrijednost();
+    }
+    this->board_Value = temp;
+}
+
 void Player::Shuffle_Deck()
 {
     cout<<"Shuffling deck..."<<endl;
@@ -147,7 +162,7 @@ void Player::Shuffle_Deck()
     int shuffle_two;
     Karta obrada;
 
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 400; i++)
     {   
         shuffle_one = rand()%deck.size();
         shuffle_two = rand()%deck.size();
@@ -188,15 +203,31 @@ void Player::Draw()
     this->deck.pop_back();   
 }
 
-void Player::Discard_Card()
+void Player::Discard_Card(Karta karta)
 {
-    
+    this->discard_Pile.push_back(karta);
 }
 
 void Player::Play_Card()
 {
-    board.push_back(hand[current_Card_Index]);
-    hand.erase(hand.begin() + current_Card_Index);
+    if(board.size() < 4)
+    {
+        board.push_back(hand[current_Card_Index]);
+        hand.erase(hand.begin() + current_Card_Index);
+        played_Card = true;
+    }
+    else
+    {
+        cout<<"Trenutno je vas board pun!!!\nMolimo izaberite kartu na boardu (index) koju zelite zamijeniti sa vasom trenutnom kartom : "<<endl;
+        See_Board(); // this might break the game
+        cin>>this->replace_Card_Index;
+        Discard_Card(board[replace_Card_Index]);
+        board[replace_Card_Index] = hand[current_Card_Index];
+        hand.erase(hand.begin() + current_Card_Index);
+        cout<<"Karta uspjesno zamijenjena!"<<endl;
+        Sleep(1000);
+        played_Card = true;
+    }
 }
 
 void Player::Next_Card()
@@ -226,7 +257,6 @@ void Player::Previous_Card()
 void Player::Update()
 {
     current = hand[current_Card_Index];
-    cout<<"Trenutni index karte : "<<endl<<current_Card_Index<<endl;
     if(GetKeyState('H') & 0x8000)
 	{
         this->Next_Card();
@@ -239,4 +269,5 @@ void Player::Update()
     {
         this->Play_Card();
     }
+
 }

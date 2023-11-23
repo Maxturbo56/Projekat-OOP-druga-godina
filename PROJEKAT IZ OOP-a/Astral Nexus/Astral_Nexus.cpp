@@ -28,3 +28,8 @@ void Runda::Smjesti_Igrace(Player one, Player two)
    
     cout<<endl<<"Sretno i neka najbolji pobjedi!"<<endl;
 }
+
+Player Runda::get_Igrac(int index)
+{
+    return this->igraci[index];
+}

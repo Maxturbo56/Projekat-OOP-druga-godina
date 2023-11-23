@@ -15,6 +15,7 @@ class Player{
     // -------------------- Trenutna Karta koja se igra ------------ //
     Karta current;
     int current_Card_Index = 0;
+    int replace_Card_Index = 0;
 
     // ------- Vrijednosti Igrača ----------- //
 
@@ -22,8 +23,11 @@ class Player{
     string ime;
     string ime_decka;
 
+    int board_Value; // Vrijednost karata na boardu
+
 public:
 
+    bool played_Card = false; // Da li je igrač odigrao kartu ili ne
     void Build_Deck(string deck_Name); //
     void Shuffle_Deck();
 
@@ -39,7 +43,7 @@ public:
     void See_Board();
 
     void Play_Card(); // Odigraj kartu na board
-    void Discard_Card(); // Odbaci kartu u vektor 'discard'
+    void Discard_Card(Karta karta); // Odbaci kartu u vektor 'discard'
 
     void Next_Card();
     void Previous_Card();
@@ -49,6 +53,8 @@ public:
     Player();
 
     ~Player() = default;
+
+    void Calculate_Board_Value(); // Racuna vrijednost karata na boardu
 
     // --------- SETTERI ---------- //
 
@@ -63,6 +69,7 @@ public:
     int get_HP();
     Karta get_Current();
     string get_Deck_Name();
+    int get_Board_Value();
 
     // ------------------------------- //
 };
