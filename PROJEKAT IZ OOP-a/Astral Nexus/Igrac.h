@@ -1,16 +1,16 @@
 // 3 of 4 util files in "ASTRAL NEXUS"
 
 #include "Karta.cpp"
-#include "vector"
-#include "fstream"
+#include <vector>
+#include <fstream>
 
 class Player{
 
     // -------------------- Vektori Igrača (Karte u ruci, Karte u špilu, Karte koje su odigrane, Karte na terenu) -------------------- //
-    vector <Karta> deck;
-    vector <Karta> hand;
-    vector <Karta> discard_Pile; 
-    vector <Karta> board; 
+    std::vector <Karta> deck;
+    std::vector <Karta> hand;
+    std::vector <Karta> discard_Pile; 
+    std::vector <Karta> board; 
 
     // -------------------- Trenutna Karta koja se igra ------------ //
     Karta current;
@@ -20,15 +20,15 @@ class Player{
     // ------- Vrijednosti Igrača ----------- //
 
     int health_Points; //Zdravlje igrača
-    string ime;
-    string ime_decka;
+    std::string ime;
+    std::string ime_decka;
 
     int board_Value; // Vrijednost karata na boardu
 
 public:
 
     bool played_Card = false; // Da li je igrač odigrao kartu ili ne
-    void Build_Deck(string deck_Name); //
+    void Build_Deck(std::string deck_Name); //
     void Shuffle_Deck();
 
     void Draw_Hand();
@@ -58,17 +58,17 @@ public:
 
     // --------- SETTERI ---------- //
 
-    void set_Ime(string naziv);
+    void set_Ime(std::string naziv);
     void set_HP(int broj);
     void set_Current(Karta karta);
-    void set_Deck_Name(string rijec);
+    void set_Deck_Name(std::string rijec);
 
     // --------- GETTERI ---------- //
 
-    string get_Ime();
+    std::string get_Ime();
     int get_HP();
     Karta get_Current();
-    string get_Deck_Name();
+    std::string get_Deck_Name();
     int get_Board_Value();
 
     // ------------------------------- //

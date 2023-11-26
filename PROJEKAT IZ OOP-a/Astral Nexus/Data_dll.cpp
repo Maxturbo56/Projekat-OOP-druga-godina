@@ -13,7 +13,7 @@ void User_Admin()
     std::string broj_Karte;
     std::string tip;
 
-    file_IN.open("Cards_dll.txt", ios::app);	// Ovdje se otvara fajl za upisivanje
+    file_IN.open("Cards_dll.txt", std::ios::app);	// Ovdje se otvara fajl za upisivanje
     do{
         std::cout<<"Do you wish to add a card to the database? (Y / N)"<<std::endl;
         std::cin>>choice;
@@ -27,7 +27,7 @@ void User_Admin()
             std::cin>>value;
             std::cout<<"Enter the type of card in numerical value : (1 - Attack, 2 - Defense, 3 - Mage, 4 - Board, 5 - Specific)"<<std::endl;
             std::cin>>tip;
-            file_IN<<"#"<<endl<<broj_Karte<<std::endl<<naziv<<std::endl<<value<<std::endl<<std::endl;
+            file_IN<<"#"<<std::endl<<broj_Karte<<std::endl<<naziv<<std::endl<<value<<std::endl<<std::endl;
             std::cout<<"Card added to the database."<<std::endl;
         }
         else if(choice == 'N' || choice == 'n')

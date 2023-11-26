@@ -2,11 +2,11 @@
 
 Player Runda::Dodaj_Igraca()
 {
-    string naziv_Igraca;
+    std::string naziv_Igraca;
     Player current;
 
-    cout<<"Unesite svoje ime : "<<endl;
-    cin>>naziv_Igraca;
+    std::cout << "Unesite svoje ime : " << std::endl;
+    std::cin >> naziv_Igraca;
     current.set_Ime(naziv_Igraca);
 
     return current;
@@ -18,15 +18,15 @@ void Runda::Smjesti_Igrace(Player one, Player two)
     this->igraci.push_back(one);
     this->igraci.push_back(two);
 
-    cout<<"Zapocinje runda ASTRAL NEXUS - a!!!"<<endl<<endl;
-    
-    for(int i = 0; i < igraci.size(); i++)
+    std::cout << "Zapocinje runda ASTRAL NEXUS - a!!!" << std::endl << std::endl;
+
+    for (int i = 0; i < igraci.size(); i++)
     {
         current = igraci[i];
-        cout<<"Igrac "<<i + 1<<" je : "<<current.get_Ime()<<endl;
+        std::cout << "Igrac " << i + 1 << " je : " << current.get_Ime() << std::endl;
     }
-   
-    cout<<endl<<"Sretno i neka najbolji pobjedi!"<<endl;
+
+    std::cout << std::endl << "Sretno i neka najbolji pobjedi!" << std::endl;
 }
 
 Player Runda::get_Igrac(int index)
