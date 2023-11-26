@@ -1,6 +1,6 @@
 #include "Astral_Nexus.cpp"
 #include "Data_dll.cpp"
-#include <conio.h>
+#include "conio.h"
 
 Player jedan, dva;
 int do_4 = 0;

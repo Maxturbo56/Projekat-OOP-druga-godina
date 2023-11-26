@@ -1,8 +1,8 @@
 // 3 of 4 util files in "ASTRAL NEXUS"
 
 #include "Karta.cpp"
-#include <vector>
-#include <fstream>
+#include "vector"
+#include "fstream"
 
 class Player{
 

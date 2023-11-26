@@ -1,7 +1,7 @@
 // 1 of 4 util files in "ASTRAL NEXUS"
 
-#include<iostream>
-#include<string>
+#include "iostream"
+#include"string"
 using namespace std;
 
 class Keyword{
@@ -25,7 +25,7 @@ public:
     // ------------------------------- //
 };
 
-enum tip_Karte{NAPAD, ODBRANA, MAGE, BOARD, SPECIFIC};  //Enumeracija TIPa karte.
+enum tip_Karte{NAPAD=1, ODBRANA, MAGE, BOARD, SPECIFIC};  //Enumeracija TIPa karte.
 
 class Karta{ //standardna klasa za predstavljanje svih karti u Astral Nexus - u 
 
