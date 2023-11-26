@@ -2,11 +2,11 @@
 // include THIS in "Astral_Nexus.cpp"
 
 #include "Igrac.h"
-#include <fstream>
-#include <cstdlib>
-#include <ctime>
-#include <string>
-#include <windows.h>
+#include "fstream"
+#include "cstdlib"
+#include "ctime"
+#include "string"
+#include "windows.h"
 
 // ---- Setteri Igrača ---------- //
 
