@@ -1,7 +1,7 @@
 #include "Igrac.cpp"
 
 class Runda{
-    vector <Player> igraci;
+    std::vector <Player> igraci;
 public:
     // ------- Smjestanje Igraca u rundu ... // 
     Player Dodaj_Igraca();

@@ -10,67 +10,67 @@
 
 // ---- Setteri Igrača ---------- //
 
-void Player::set_Ime(string naziv){this->ime = naziv;}
+void Player::set_Ime(std::string naziv){this->ime = naziv;}
 void Player::set_HP(int broj){this->health_Points = broj;}
 void Player::set_Current(Karta karta){this->current = karta;}
-void Player::set_Deck_Name(string rijec){this->ime_decka = rijec;}	
+void Player::set_Deck_Name(std::string rijec){this->ime_decka = rijec;}	
 
 // ---- Getteri Igrača ---------- //
 
-string Player::get_Ime(){return this->ime;}
+std::string Player::get_Ime(){return this->ime;}
 int Player::get_HP(){return this->health_Points;}
 Karta Player::get_Current(){return this->current;}
-string Player::get_Deck_Name(){return this->ime_decka;}
+std::string Player::get_Deck_Name(){return this->ime_decka;}
 
 // ------ Implementacija (See_Deck, See_Hand, See_Discard) ------ //
 
 void Player::See_Deck()
 {
     Karta obrada;
-    cout<<"Karte trenutno u spilu : "<<endl<<endl;
+    std::cout<<"Karte trenutno u spilu : "<<std::endl<<std::endl;
 
     for(int i = 0; i < deck.size(); i++)
     {
         obrada = this->deck[i];
-        cout<<i + 1<<" "<<obrada.get_Naziv()<<" ( "<<obrada.get_Vrijednost()<<" )"<<endl;
+        std::cout<<i + 1<<" "<<obrada.get_Naziv()<<" ( "<<obrada.get_Vrijednost()<<" )"<<std::endl;
     }
 }
 
 void Player::See_Hand()
 {
     Karta obrada;
-    cout<<"Karte trenutno u ruci : "<<endl<<endl;
+    std::cout<<"Karte trenutno u ruci : "<<std::endl<<std::endl;
 
     for(int i = 0; i < hand.size(); i++)
     {
         obrada = this->hand[i];
-        cout<<i + 1<<" "<<obrada.get_Naziv()<<" ( "<<obrada.get_Vrijednost()<<" )\t";
+        std::cout<<i + 1<<" "<<obrada.get_Naziv()<<" ( "<<obrada.get_Vrijednost()<<" )\t";
     }
 }
 
 void Player::See_Discard()
 {
     Karta obrada;
-    cout<<"Karte trenutno u discard - u : "<<endl<<endl;
+    std::cout<<"Karte trenutno u discard - u : "<<std::endl<<std::endl;
 
     for(int i = 0; i < discard_Pile.size(); i++)
     {
         obrada = discard_Pile[i];
-        cout<<i + 1<<" "<<obrada.get_Naziv()<<" ( "<<obrada.get_Vrijednost()<<" )\t";
+        std::cout<<i + 1<<" "<<obrada.get_Naziv()<<" ( "<<obrada.get_Vrijednost()<<" )\t";
     }
 }
 
 void Player::See_Board()
 {
     Karta obrada;
-    cout<<"Karte trenutno u BOARD - u : "<<endl<<endl;
+    std::cout<<"Karte trenutno u BOARD - u : "<<std::endl<<std::endl;
 
     if(board.size() != 0)
     {
         for(int i = 0; i < board.size(); i++)
         {
             obrada = board[i];
-            cout<<i + 1<<" "<<obrada.get_Naziv()<<" ( "<<obrada.get_Vrijednost()<<" )\t";
+            std::cout<<i + 1<<" "<<obrada.get_Naziv()<<" ( "<<obrada.get_Vrijednost()<<" )\t";
         }
     }
 }
@@ -85,24 +85,24 @@ Player :: Player()
 
 // --------- IZGRADANJA SPILA -------- //
 
-void Player::Build_Deck(string deck_Name)
+void Player::Build_Deck(std::string deck_Name)
 {
-    string name_of_Deck; 
+    std::string name_of_Deck; 
     name_of_Deck = deck_Name + ".txt"; 
-    cout<<"Deck name set to : "<<name_of_Deck<<endl;  	
+    std::cout<<"Deck name set to : "<<name_of_Deck<<std::endl;  	
     Karta obrada;
 
     // ------------------- CITANJE BAZE ------------------- //
 
-    vector <string> linije_Baze;
-    string linija;
+    std::vector <std::string> linije_Baze;
+    std::string linija;
 
     // ---------- KARTA ---------- //
 
-    string name_of_Card;
+    std::string name_of_Card;
     int value_of_Card, index_of_Card;
 
-    ifstream file_IN;
+    std::ifstream file_IN;
 
     file_IN.open(name_of_Deck);
 
@@ -120,17 +120,17 @@ void Player::Build_Deck(string deck_Name)
         if(linije_Baze[i] == "#")
         {
             name_of_Card = linije_Baze[i + 2];
-            value_of_Card = stoi(linije_Baze[i + 3]);
-            index_of_Card = stoi(linije_Baze[i + 1]);
+            value_of_Card = std::stoi(linije_Baze[i + 3]);
+            index_of_Card = std::stoi(linije_Baze[i + 1]);
             // ------------ INICIJALIZACIJA KARTE -------------- //
             obrada.set_Naziv(name_of_Card);
-            cout<<endl<<"Ime obrade : "<<obrada.get_Naziv()<<endl;
+            std::cout<<std::endl<<"Ime obrade : "<<obrada.get_Naziv()<<std::endl;
             obrada.set_Broj(index_of_Card);
-            cout<<endl<<"Index obrade : "<<obrada.get_Broj()<<endl;
+            std::cout<<std::endl<<"Index obrade : "<<obrada.get_Broj()<<std::endl;
             obrada.set_Vrijednost(value_of_Card);
-            cout<<endl<<"Vrijednost obrade : "<<obrada.get_Vrijednost()<<endl;
+            std::cout<<std::endl<<"Vrijednost obrade : "<<obrada.get_Vrijednost()<<std::endl;
             deck.push_back(obrada);
-            cout<<"Obrada dodana u spil!"<<endl;
+            std::cout<<"Obrada dodana u spil!"<<std::endl;
         }
         else 
         {
@@ -156,7 +156,7 @@ void Player::Calculate_Board_Value()
 
 void Player::Shuffle_Deck()
 {
-    cout<<"Shuffling deck..."<<endl;
+    std::cout<<"Shuffling deck..."<<std::endl;
 
     int shuffle_one;
     int shuffle_two;
@@ -173,7 +173,7 @@ void Player::Shuffle_Deck()
             this->deck[shuffle_one] = this->deck[shuffle_two];
             this->deck[shuffle_two] = obrada;
 
-            cout<<"Swapped "<<shuffle_one<<" with "<<shuffle_two<<endl;
+            std::cout<<"Swapped "<<shuffle_one<<" with "<<shuffle_two<<std::endl;
         }
         else
         {
@@ -181,7 +181,7 @@ void Player::Shuffle_Deck()
         }
     }
 
-    cout<<"Deck shuffled!"<<endl;
+    std::cout<<"Deck shuffled!"<<std::endl;
 }
 
 void Player::Draw_Hand()
@@ -218,13 +218,13 @@ void Player::Play_Card()
     }
     else
     {
-        cout<<"Trenutno je vas board pun!!!\nMolimo izaberite kartu na boardu (index) koju zelite zamijeniti sa vasom trenutnom kartom : "<<endl;
+        std::cout<<"Trenutno je vas board pun!!!\nMolimo izaberite kartu na boardu (index) koju zelite zamijeniti sa vasom trenutnom kartom : "<<std::endl;
         See_Board(); // this might break the game
-        cin>>this->replace_Card_Index;
+        std::cin>>this->replace_Card_Index;
         Discard_Card(board[replace_Card_Index]);
         board[replace_Card_Index] = hand[current_Card_Index];
         hand.erase(hand.begin() + current_Card_Index);
-        cout<<"Karta uspjesno zamijenjena!"<<endl;
+        std::cout<<"Karta uspjesno zamijenjena!"<<std::endl;
         Sleep(1000);
         played_Card = true;
     }
