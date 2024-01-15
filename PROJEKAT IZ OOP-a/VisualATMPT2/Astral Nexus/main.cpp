@@ -1,6 +1,8 @@
 #include "Astral_Nexus.cpp"
 #include "Data_dll.cpp"
 #include "conio.h"
+#include <Windows.h>
+
 
 Player jedan, dva;
 int do_4 = 0;
@@ -25,57 +27,59 @@ void DO_THE_MATH()
 void Handle_Jedan()
 {
     jedan.Update();
-    std::cout<<jedan.get_Ime()<<" : Health Points : "<<jedan.get_HP()<<std::endl<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl<<std::endl;
-    std::cout<<"Karta koja se igra : "<<jedan.get_Current().get_Naziv()<<std::endl<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl<<std::endl;
-    std::cout<<jedan.get_Ime()<<" HAND :" <<std::endl;
+    std::cout<<jedan.get_Ime()<<" : Health Points : "<<jedan.get_HP()<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<"Karta koja se igra : "<<jedan.get_Current().get_Naziv()<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<jedan.get_Ime()<<" HAND :"<<std::endl;
     jedan.See_Hand();
-    std::cout<<std::endl<<"----------------------------"<<std::endl<<std::endl;
-    std::cout<<jedan.get_Ime()<<" BOARD :" <<std::endl;
+    std::cout<<std::endl<<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<std::endl<<std::endl;
+    std::cout<<jedan.get_Ime()<<" BOARD :"<<std::endl;
     jedan.See_Board();
-    std::cout<<std::endl<<"----------------------------"<<std::endl<<std::endl;
+    std::cout<<std::endl<<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<std::endl<<std::endl;
     std::cout<<"DISCARD PILE : "<<std::endl;
     jedan.See_Discard();
-    std::cout<<std::endl<<"----------------------------"<<std::endl<<std::endl;
+    std::cout<<std::endl<<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<std::endl<<std::endl;
     std::cout<<" >>>>>>>>>>> DRUGI IGRAC <<<<<<<<<"<<std::endl<<std::endl;
-    std::cout<<dva.get_Ime()<<" : Health Points : "<<dva.get_HP()<<std::endl<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl<<std::endl;
-    std::cout<<dva.get_Ime()<<" BOARD :" <<std::endl;
+    std::cout<<dva.get_Ime()<<" : Health Points : "<<dva.get_HP()<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<dva.get_Ime()<<" BOARD :"<<std::endl;
     dva.See_Board();
 }
 
 void Handle_Dva()
 {
     dva.Update();
-    std::cout<<dva.get_Ime()<<" : Health Points : "<<dva.get_HP()<<std::endl<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl<<std::endl;
-    std::cout<<"Karta koja se igra : "<<dva.get_Current().get_Naziv()<<std::endl<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl<<std::endl;
-    std::cout<<dva.get_Ime()<<" HAND :" <<std::endl;
+    std::cout<<dva.get_Ime()<<" : Health Points : "<<dva.get_HP()<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<"Karta koja se igra : "<<dva.get_Current().get_Naziv()<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<dva.get_Ime()<<" HAND :"<<std::endl;
     dva.See_Hand();
-    std::cout<<std::endl<<"----------------------------------"<<std::endl<<std::endl;
-    std::cout<<dva.get_Ime()<<" BOARD :" <<std::endl;
+    std::cout<<std::endl<<"-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<std::endl<<std::endl;
+    std::cout<<dva.get_Ime()<<" BOARD :"<<std::endl;
     dva.See_Board();
-    std::cout<<std::endl<<"----------------------------------"<<std::endl<<std::endl;
-    std::cout<<" >>>>>>>>>>> DRUGI IGRAC <<<<<<<<<"<<std::endl<<std::endl;
-    std::cout<<jedan.get_Ime()<<" : Health Points : "<<jedan.get_HP()<<std::endl<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl<<std::endl;
-    std::cout<<jedan.get_Ime()<<" BOARD :" <<std::endl;
+    std::cout<<std::endl<<"-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<std::endl<<std::endl;
+    std::cout<<" >>>>>>>>>>> DRUGI IGRAC <<<<<<<<<"<<std::endl;
+    std::cout<<jedan.get_Ime()<<" : Health Points : "<<jedan.get_HP()<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<jedan.get_Ime()<<" BOARD :"<<std::endl;
     jedan.See_Board();
 }
-
+void WindowMaximisation()
+     {
+             //---------- WINDOW MAXIMISATION-------------- //
+       HWND hwnd = GetConsoleWindow();
+       ShowWindow(hwnd, SW_MAXIMIZE);
+     }
 int main()
 {
+    WindowMaximisation();
     std::string user_Input;
     std::string user;
     std::string pass;
 
-    //---------- WINDOW MAXIMISATION-------------- //
-    #ifdef _WIN32
-    HWND hwnd = GetConsoleWindow();
-    ShowWindow(hwnd, SW_MAXIMIZE);
-    #endif
+
     // -------------------- RANDOMIZATION --------------------- //
     srand(time(NULL));
     srand(time(NULL));

@@ -43,16 +43,17 @@ std::string Player::get_Deck_Name(){return this->ime_decka;}
 void Player::See_Deck()
 {
             //Varijable velicine karte za "crtanje"//
-   const std::string UpDownGranica ="--------------------";
-   const std::string SidesGranica  ="I                  I";
-   const std::string MalaSideGranica="                 I";
+   const std::string UpDownGranica  ="--------------------";
+   const std::string SidesGranica   ="I                  I";
+   const std::string MalaSideGranica="                I";
    const std::string Razmak        ="   ";
    const int VisinaKarte=12;
    const std::string BoardKartaUpDownGranica="------------------------------";
    const std::string BoardKartaSidesGranica ="I                            I";
    const int VisinaBoardKarte=8;
+   std::string combinedText;
+   std::string tempCombinedTekst;
     Karta obrada;
-    std::cout<<"Karte trenutno u spilu : "<<std::endl<<std::endl;
 
     for(int k=0;k<VisinaKarte;k++)
     { combinedText.clear();
@@ -96,7 +97,7 @@ void Player::See_Deck()
         for(int ku=0;ku<deck.size();ku++)
         {
          obrada = this->deck[ku];
-         tempCombinedTekst=tempCombinedTekst+"I "+obrada.get_Vrijednost()+MalaSideGranica+Razmak;
+         tempCombinedTekst=tempCombinedTekst+"I "+(std::to_string(obrada.get_Vrijednost()))+MalaSideGranica+Razmak;
         }
         combinedText=tempCombinedTekst;
       }
@@ -117,16 +118,14 @@ void Player::See_Deck()
 void Player::See_Hand()
 {
             //Varijable velicine karte za "crtanje"//
-   const std::string UpDownGranica ="--------------------";
-   const std::string SidesGranica  ="I                  I";
-   const std::string MalaSideGranica="                 I";
-   const std::string Razmak        ="   ";
-   const int VisinaKarte=12;
-   const std::string BoardKartaUpDownGranica="------------------------------";
-   const std::string BoardKartaSidesGranica ="I                            I";
-   const int VisinaBoardKarte=8;
+    const std::string UpDownGranica ="--------------------";
+    const std::string SidesGranica  ="I                  I";
+    const std::string MalaSideGranica="                I";
+    const std::string Razmak        ="   ";
+    const int VisinaKarte=12;
+    std::string combinedText;
+    std::string tempCombinedTekst;
     Karta obrada;
-    std::cout<<"Karte trenutno u ruci : "<<std::endl<<std::endl;
 
     for(int k=0;k<VisinaKarte;k++)
     { combinedText.clear();
@@ -170,7 +169,7 @@ void Player::See_Hand()
         for(int ku=0;ku<hand.size();ku++)
         {
          obrada = this->deck[ku];
-         tempCombinedTekst=tempCombinedTekst+"I "+obrada.get_Vrijednost()+MalaSideGranica+Razmak;
+         tempCombinedTekst=tempCombinedTekst+"I "+(std::to_string(obrada.get_Vrijednost()))+MalaSideGranica+Razmak;
         }
         combinedText=tempCombinedTekst;
       }
@@ -191,17 +190,17 @@ void Player::See_Hand()
 void Player::See_Discard()
 {
             //Varijable velicine karte za "crtanje"//
-   const std::string UpDownGranica ="--------------------";
-   const std::string SidesGranica  ="I                  I";
-   const std::string MalaSideGranica="                 I";
-   const std::string Razmak        ="   ";
-   const int VisinaKarte=12;
-   const std::string BoardKartaUpDownGranica="------------------------------";
-   const std::string BoardKartaSidesGranica ="I                            I";
-   const int VisinaBoardKarte=8;
+    const std::string UpDownGranica ="--------------------";
+    const std::string SidesGranica  ="I                  I";
+    const std::string MalaSideGranica="                I";
+    const std::string Razmak        ="   ";
+    const int VisinaKarte=12;
+
+    std::string combinedText;
+    std::string tempCombinedTekst;
     Karta obrada;
-    std::cout<<"Karte trenutno u discard - u : "<<std::endl<<std::endl;
-    if(discard_Pile!=0)
+
+    if(discard_Pile.size()!=0)
     {
      for(int k=0;k<VisinaKarte;k++)
      { combinedText.clear();
@@ -245,7 +244,7 @@ void Player::See_Discard()
         for(int ku=0;ku<discard_Pile.size();ku++)
         {
          obrada = this->deck[ku];
-         tempCombinedTekst=tempCombinedTekst+"I "+obrada.get_Vrijednost()+MalaSideGranica+Razmak;
+         tempCombinedTekst=tempCombinedTekst+"I "+(std::to_string(obrada.get_Vrijednost()))+MalaSideGranica+Razmak;
         }
         combinedText=tempCombinedTekst;
       }
@@ -267,16 +266,15 @@ void Player::See_Discard()
 void Player::See_Board()
 {
             //Varijable velicine karte za "crtanje"//
-   const std::string UpDownGranica ="--------------------";
-   const std::string SidesGranica  ="I                  I";
-   const std::string MalaSideGranica="                 I";
-   const std::string Razmak        ="   ";
-   const int VisinaKarte=12;
-   const std::string BoardKartaUpDownGranica="------------------------------";
-   const std::string BoardKartaSidesGranica ="I                            I";
-   const int VisinaBoardKarte=8;
+    const std::string UpDownGranica ="--------------------";
+    const std::string SidesGranica  ="I                  I";
+    const std::string MalaSideGranica="                I";
+    const std::string Razmak        ="   ";
+    const int VisinaKarte=12;
+
+    std::string combinedText;
+    std::string tempCombinedTekst;
     Karta obrada;
-    std::cout<<"Karte trenutno u BOARD - u : "<<std::endl<<std::endl;
 
     if(board.size() != 0)
     {
@@ -294,7 +292,7 @@ void Player::See_Board()
          tempCombinedTekst.clear();
         for(int ku=0;ku<board.size();ku++)
         {
-          obrada = board[i];
+          obrada = board[ku];
          int PrazanProstor=17-obrada.get_Naziv().size();
          if(PrazanProstor%2!=0)
              tempCombinedTekst=tempCombinedTekst+"I";
@@ -307,7 +305,7 @@ void Player::See_Board()
             {
              tempCombinedTekst=tempCombinedTekst+" ";
             }
-         tempCombinedTekst=tempCombinedTekst+ImenaKartiIgraca[ku];
+         tempCombinedTekst=tempCombinedTekst+obrada.get_Naziv();
           for(int znj=0;znj<=PolaPrazanProstor;znj++)
             {
              tempCombinedTekst=tempCombinedTekst+" ";
@@ -322,7 +320,7 @@ void Player::See_Board()
         for(int ku=0;ku<board.size();ku++)
         {
          obrada = this->deck[ku];
-         tempCombinedTekst=tempCombinedTekst+"I "+obrada.get_Vrijednost()+MalaSideGranica+Razmak;
+         tempCombinedTekst=tempCombinedTekst+"I "+(std::to_string(obrada.get_Vrijednost()))+MalaSideGranica+Razmak;
         }
         combinedText=tempCombinedTekst;
       }

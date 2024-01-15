@@ -27,8 +27,7 @@ class Player{
     std::string ime_decka;
 
     int board_Value; // Vrijednost karata na boardu
-    std::string CombinedTekst;
-    std::string tempCombinedTekst;
+
 
 public:
 
