@@ -1,0 +1,38 @@
+#include <iostream>
+#include <fstream>
+#include <boost/asio.hpp>
+
+using boost::asio::ip::tcp;
+
+int main() {
+    try {
+        boost::asio::io_context io_context;
+
+        // Create an endpoint for the server
+        tcp::endpoint endpoint(boost::asio::ip::address::from_string("192.168.1.2"), 12345); // Change IP address as needed
+
+        // Create and connect the socket
+        tcp::socket socket(io_context);
+        socket.connect(endpoint);
+
+        // Open the file to be sent
+        std::ifstream file("file_to_send.txt", std::ios::binary);
+
+        if (!file.is_open()) {
+            std::cerr << "Error opening file." << std::endl;
+            return 1;
+        }
+
+        // Read and send the file
+        std::vector<char> buffer(1024);
+        while (file.read(buffer.data(), buffer.size())) {
+            boost::asio::write(socket, boost::asio::buffer(buffer.data(), file.gcount()));
+        }
+
+        file.close();
+    } catch (std::exception& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
