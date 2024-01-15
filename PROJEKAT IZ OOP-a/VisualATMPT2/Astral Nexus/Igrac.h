@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <Windows.h>
 
 class Player{
 
@@ -26,6 +27,8 @@ class Player{
     std::string ime_decka;
 
     int board_Value; // Vrijednost karata na boardu
+    std::string CombinedTekst;
+    std::string tempCombinedTekst;
 
 public:
 
@@ -35,6 +38,9 @@ public:
 
     void Draw_Hand();
     void Draw();
+    int getTerminalWidth();
+    void printCenteredTextWithinWidth(const std::string& text, int maxWidth);
+    int terminalWidth=getTerminalWidth();
 
 
     // Funckije kroz koje se vidi koje karte se nalaze u kojem vektoru igrača ---------------- //
@@ -74,4 +80,5 @@ public:
     int get_Board_Value();
 
     // ------------------------------- //
+
 };

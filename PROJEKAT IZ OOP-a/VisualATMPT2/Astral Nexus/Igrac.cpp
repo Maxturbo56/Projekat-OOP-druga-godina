@@ -6,10 +6,9 @@
 #include "cstdlib"
 #include "ctime"
 #include "string"
-#include "windows.h"
 
 // Funkcija koja trazi sirinu terminala
-int getTerminalWidth()
+int Player::getTerminalWidth()
 {
 
     CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -17,27 +16,13 @@ int getTerminalWidth()
     return csbi.srWindow.Right - csbi.srWindow.Left + 1;
 
 }
-int terminalWidth = getTerminalWidth();
-
-
 
 // Funkcija koja ce printati linije u datomj setw sirini //
-void printCenteredTextWithinWidth(const std::string& text, int maxWidth)
+void Player::printCenteredTextWithinWidth(const std::string& text, int maxWidth)
 {
     int padding = (maxWidth - text.length()) / 2;
     std::cout << std::setw(maxWidth) << std::right << std::setw(padding + text.length()) << text<<std::endl;
 }
-
-//Varijable velicine karte za "crtanje"//
-    std::string UpDownGranica ="--------------------";
-    std::string SidesGranica  ="I                  I";
-    std::string MalaSideGranica="                 I";
-    std::string Razmak        ="   ";
-    int VisinaKarte=12;
-    std::string BoardKartaUpDownGranica="------------------------------";
-    std::string BoardKartaSidesGranica ="I                            I";
-    int VisinaBoardKarte=8;
-    std::string tempCombinedTekst;
 
 // ---- Setteri Igrača ---------- //
 
@@ -57,6 +42,15 @@ std::string Player::get_Deck_Name(){return this->ime_decka;}
 
 void Player::See_Deck()
 {
+            //Varijable velicine karte za "crtanje"//
+   const std::string UpDownGranica ="--------------------";
+   const std::string SidesGranica  ="I                  I";
+   const std::string MalaSideGranica="                 I";
+   const std::string Razmak        ="   ";
+   const int VisinaKarte=12;
+   const std::string BoardKartaUpDownGranica="------------------------------";
+   const std::string BoardKartaSidesGranica ="I                            I";
+   const int VisinaBoardKarte=8;
     Karta obrada;
     std::cout<<"Karte trenutno u spilu : "<<std::endl<<std::endl;
 
@@ -87,7 +81,7 @@ void Player::See_Deck()
             {
              tempCombinedTekst=tempCombinedTekst+" ";
             }
-         tempCombinedTekst=tempCombinedTekst+ImenaKartiIgraca[ku];
+         tempCombinedTekst=tempCombinedTekst+obrada.get_Naziv();
           for(int znj=0;znj<=PolaPrazanProstor;znj++)
             {
              tempCombinedTekst=tempCombinedTekst+" ";
@@ -122,6 +116,15 @@ void Player::See_Deck()
 //-------Implementacija funkcije Vidi Ruku--------//
 void Player::See_Hand()
 {
+            //Varijable velicine karte za "crtanje"//
+   const std::string UpDownGranica ="--------------------";
+   const std::string SidesGranica  ="I                  I";
+   const std::string MalaSideGranica="                 I";
+   const std::string Razmak        ="   ";
+   const int VisinaKarte=12;
+   const std::string BoardKartaUpDownGranica="------------------------------";
+   const std::string BoardKartaSidesGranica ="I                            I";
+   const int VisinaBoardKarte=8;
     Karta obrada;
     std::cout<<"Karte trenutno u ruci : "<<std::endl<<std::endl;
 
@@ -152,7 +155,7 @@ void Player::See_Hand()
             {
              tempCombinedTekst=tempCombinedTekst+" ";
             }
-         tempCombinedTekst=tempCombinedTekst+ImenaKartiIgraca[ku];
+         tempCombinedTekst=tempCombinedTekst+obrada.get_Naziv();
           for(int znj=0;znj<=PolaPrazanProstor;znj++)
             {
              tempCombinedTekst=tempCombinedTekst+" ";
@@ -187,6 +190,15 @@ void Player::See_Hand()
 
 void Player::See_Discard()
 {
+            //Varijable velicine karte za "crtanje"//
+   const std::string UpDownGranica ="--------------------";
+   const std::string SidesGranica  ="I                  I";
+   const std::string MalaSideGranica="                 I";
+   const std::string Razmak        ="   ";
+   const int VisinaKarte=12;
+   const std::string BoardKartaUpDownGranica="------------------------------";
+   const std::string BoardKartaSidesGranica ="I                            I";
+   const int VisinaBoardKarte=8;
     Karta obrada;
     std::cout<<"Karte trenutno u discard - u : "<<std::endl<<std::endl;
     if(discard_Pile!=0)
@@ -218,7 +230,7 @@ void Player::See_Discard()
             {
              tempCombinedTekst=tempCombinedTekst+" ";
             }
-         tempCombinedTekst=tempCombinedTekst+ImenaKartiIgraca[ku];
+         tempCombinedTekst=tempCombinedTekst+obrada.get_Naziv();
           for(int znj=0;znj<=PolaPrazanProstor;znj++)
             {
              tempCombinedTekst=tempCombinedTekst+" ";
@@ -254,6 +266,15 @@ void Player::See_Discard()
 
 void Player::See_Board()
 {
+            //Varijable velicine karte za "crtanje"//
+   const std::string UpDownGranica ="--------------------";
+   const std::string SidesGranica  ="I                  I";
+   const std::string MalaSideGranica="                 I";
+   const std::string Razmak        ="   ";
+   const int VisinaKarte=12;
+   const std::string BoardKartaUpDownGranica="------------------------------";
+   const std::string BoardKartaSidesGranica ="I                            I";
+   const int VisinaBoardKarte=8;
     Karta obrada;
     std::cout<<"Karte trenutno u BOARD - u : "<<std::endl<<std::endl;
 
