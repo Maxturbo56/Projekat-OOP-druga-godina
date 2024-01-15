@@ -1,6 +1,8 @@
 #include "Astral_Nexus.cpp"
 #include "Data_dll.cpp"
 #include "conio.h"
+#include <Windows.h>
+
 
 Player jedan, dva;
 int do_4 = 0;
@@ -19,57 +21,64 @@ void DO_THE_MATH()
     do_4 = 0;
     system("CLS");
     std::cout<<"POCINJE NOVA RUNDA! OBA IGRACA SU IZVUKLI PO JEDNU KARTU!"<<std::endl;
-    Sleep(1000);   
+    Sleep(1000);
 }
 
 void Handle_Jedan()
 {
     jedan.Update();
-    std::cout<<jedan.get_Ime()<<" : Health Points : "<<jedan.get_HP()<<std::endl<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl<<std::endl;   
-    std::cout<<"Karta koja se igra : "<<jedan.get_Current().get_Naziv()<<std::endl<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl<<std::endl;   
-    std::cout<<jedan.get_Ime()<<" HAND :" <<std::endl;
-    jedan.See_Hand();        
-    std::cout<<std::endl<<"----------------------------"<<std::endl<<std::endl;   
-    std::cout<<jedan.get_Ime()<<" BOARD :" <<std::endl;
+    std::cout<<jedan.get_Ime()<<" : Health Points : "<<jedan.get_HP()<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<"Karta koja se igra : "<<jedan.get_Current().get_Naziv()<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<jedan.get_Ime()<<" HAND :"<<std::endl;
+    jedan.See_Hand();
+    std::cout<<std::endl<<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<std::endl<<std::endl;
+    std::cout<<jedan.get_Ime()<<" BOARD :"<<std::endl;
     jedan.See_Board();
-    std::cout<<std::endl<<"----------------------------"<<std::endl<<std::endl;
+    std::cout<<std::endl<<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<std::endl<<std::endl;
     std::cout<<"DISCARD PILE : "<<std::endl;
     jedan.See_Discard();
-    std::cout<<std::endl<<"----------------------------"<<std::endl<<std::endl;
+    std::cout<<std::endl<<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<std::endl<<std::endl;
     std::cout<<" >>>>>>>>>>> DRUGI IGRAC <<<<<<<<<"<<std::endl<<std::endl;
-    std::cout<<dva.get_Ime()<<" : Health Points : "<<dva.get_HP()<<std::endl<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl<<std::endl;
-    std::cout<<dva.get_Ime()<<" BOARD :" <<std::endl;
+    std::cout<<dva.get_Ime()<<" : Health Points : "<<dva.get_HP()<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<dva.get_Ime()<<" BOARD :"<<std::endl;
     dva.See_Board();
 }
 
 void Handle_Dva()
 {
     dva.Update();
-    std::cout<<dva.get_Ime()<<" : Health Points : "<<dva.get_HP()<<std::endl<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl<<std::endl;   
-    std::cout<<"Karta koja se igra : "<<dva.get_Current().get_Naziv()<<std::endl<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl<<std::endl;   
-    std::cout<<dva.get_Ime()<<" HAND :" <<std::endl;
-    dva.See_Hand();        
-    std::cout<<std::endl<<"----------------------------------"<<std::endl<<std::endl;   
-    std::cout<<dva.get_Ime()<<" BOARD :" <<std::endl;
+    std::cout<<dva.get_Ime()<<" : Health Points : "<<dva.get_HP()<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<"Karta koja se igra : "<<dva.get_Current().get_Naziv()<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<dva.get_Ime()<<" HAND :"<<std::endl;
+    dva.See_Hand();
+    std::cout<<std::endl<<"-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<std::endl<<std::endl;
+    std::cout<<dva.get_Ime()<<" BOARD :"<<std::endl;
     dva.See_Board();
-    std::cout<<std::endl<<"----------------------------------"<<std::endl<<std::endl;
-    std::cout<<" >>>>>>>>>>> DRUGI IGRAC <<<<<<<<<"<<std::endl<<std::endl;
-    std::cout<<jedan.get_Ime()<<" : Health Points : "<<jedan.get_HP()<<std::endl<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl<<std::endl;
-    std::cout<<jedan.get_Ime()<<" BOARD :" <<std::endl;
+    std::cout<<std::endl<<"-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<std::endl<<std::endl;
+    std::cout<<" >>>>>>>>>>> DRUGI IGRAC <<<<<<<<<"<<std::endl;
+    std::cout<<jedan.get_Ime()<<" : Health Points : "<<jedan.get_HP()<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<jedan.get_Ime()<<" BOARD :"<<std::endl;
     jedan.See_Board();
 }
-
+void WindowMaximisation()
+     {
+             //---------- WINDOW MAXIMISATION-------------- //
+       HWND hwnd = GetConsoleWindow();
+       ShowWindow(hwnd, SW_MAXIMIZE);
+     }
 int main()
 {
+    WindowMaximisation();
     std::string user_Input;
     std::string user;
     std::string pass;
+
 
     // -------------------- RANDOMIZATION --------------------- //
     srand(time(NULL));
@@ -112,11 +121,11 @@ int main()
 
     jedan.Build_Deck(jedan.get_Deck_Name());
     jedan.Shuffle_Deck();
-    
+
     dva.Build_Deck(dva.get_Deck_Name());
     dva.Shuffle_Deck();
 
-    std::cout<<"Karte prvog igraca : "<<std::endl; 
+    std::cout<<"Karte prvog igraca : "<<std::endl;
 
     jedan.Draw_Hand();
     jedan.See_Hand();
@@ -141,7 +150,7 @@ int main()
         {
             DO_THE_MATH();
         }
-    
+
         std::cout<<" H = sljedeca karta ; J = prethodna karta ; K = odigraj kartu ;  Q = izadji iz igre"<<std::endl<<std::endl;
 
         if(trenutni == 0)
@@ -152,7 +161,7 @@ int main()
                 do_4++;
                 jedan.played_Card = false;
                 trenutni = 1;
-                system("CLS"); 
+                system("CLS");
                 std::cout<<"Mijenja se igrac na : "<<dva.get_Ime()<<" molimo pricekajte ..."<<std::endl<<std::endl;
                 jedan.Calculate_Board_Value();
                 Sleep(1500);

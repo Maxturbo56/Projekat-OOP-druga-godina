@@ -26,7 +26,7 @@ public:
 
 enum tip_Karte { NAPAD = 1, ODBRANA, MAGE, BOARD, SPECIFIC };  //Enumeracija TIPa karte.
 
-class Karta { //standardna klasa za predstavljanje svih karti u Astral Nexus - u 
+class Karta { //standardna klasa za predstavljanje svih karti u Astral Nexus - u
 
     // ----------- Standardne Vrijednosti --------------- //
 

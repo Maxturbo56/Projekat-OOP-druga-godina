@@ -3,14 +3,17 @@
 #include "Karta.cpp"
 #include <vector>
 #include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <Windows.h>
 
 class Player{
 
     // -------------------- Vektori Igrača (Karte u ruci, Karte u špilu, Karte koje su odigrane, Karte na terenu) -------------------- //
     std::vector <Karta> deck;
     std::vector <Karta> hand;
-    std::vector <Karta> discard_Pile; 
-    std::vector <Karta> board; 
+    std::vector <Karta> discard_Pile;
+    std::vector <Karta> board;
 
     // -------------------- Trenutna Karta koja se igra ------------ //
     Karta current;
@@ -25,6 +28,7 @@ class Player{
 
     int board_Value; // Vrijednost karata na boardu
 
+
 public:
 
     bool played_Card = false; // Da li je igrač odigrao kartu ili ne
@@ -33,6 +37,9 @@ public:
 
     void Draw_Hand();
     void Draw();
+    int getTerminalWidth();
+    void printCenteredTextWithinWidth(const std::string& text, int maxWidth);
+    int terminalWidth=getTerminalWidth();
 
 
     // Funckije kroz koje se vidi koje karte se nalaze u kojem vektoru igrača ---------------- //
@@ -72,4 +79,5 @@ public:
     int get_Board_Value();
 
     // ------------------------------- //
+
 };
