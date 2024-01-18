@@ -17,7 +17,7 @@ int Player::getTerminalWidth()
 
 }
 
-// Funkcija koja ce printati linije u datomj setw sirini //
+// Funkcija koja ce printati linije u datoj setw sirini //
 void Player::printCenteredTextWithinWidth(const std::string& text, int maxWidth)
 {
     int padding = (maxWidth - text.length()) / 2;
@@ -401,6 +401,7 @@ void Player::Build_Deck(std::string deck_Name)
             std::cout<<std::endl<<"Vrijednost obrade : "<<obrada.get_Vrijednost()<<std::endl;
             deck.push_back(obrada);
             std::cout<<"Obrada dodana u spil!"<<std::endl;
+            Sleep(50);
         }
         else
         {
@@ -432,7 +433,7 @@ void Player::Shuffle_Deck()
     int shuffle_two;
     Karta obrada;
 
-    for(int i = 0; i < 400; i++)
+    for(int i = 0; i < 200; i++)
     {
         shuffle_one = rand()%deck.size();
         shuffle_two = rand()%deck.size();
@@ -444,6 +445,7 @@ void Player::Shuffle_Deck()
             this->deck[shuffle_two] = obrada;
 
             std::cout<<"Swapped "<<shuffle_one<<" with "<<shuffle_two<<std::endl;
+            Sleep(10);
         }
         else
         {
@@ -467,9 +469,9 @@ void Player::Draw_Hand()
 
 void Player::Draw()
 {
-    Karta temp;
-    temp = this->deck.back();
-    this->hand.push_back(temp);
+    std::unique_ptr <Karta> temp = std::make_unique <Karta> ();
+    *temp = this->deck.back();
+    this->hand.push_back(*temp);
     this->deck.pop_back();
 }
 

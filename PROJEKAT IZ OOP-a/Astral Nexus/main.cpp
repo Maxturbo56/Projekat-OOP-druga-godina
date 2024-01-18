@@ -16,6 +16,12 @@ void DO_THE_MATH()
     int dva_Vrijednost = dva.get_Board_Value();
     jedan.set_HP(jedan.get_HP() - dva_Vrijednost);
     dva.set_HP(dva.get_HP() - jedan_Vrijednost);
+    if(jedan.get_HP() < 1 || dva.get_HP() < 1)
+    {
+    std::cout<<" ------------ GAME ENDS ------------------- \n\n\t Player one HP : "<< jedan.get_HP();
+    std::cout <<"\n\t Player two HP : "<<dva.get_HP();
+    return;
+    }
     jedan.Draw();
     dva.Draw();
     do_4 = 0;
@@ -68,7 +74,7 @@ void Handle_Dva()
 }
 void WindowMaximisation()
      {
-             //---------- WINDOW MAXIMISATION-------------- //
+        //---------- WINDOW MAXIMISATION-------------- //
        HWND hwnd = GetConsoleWindow();
        ShowWindow(hwnd, SW_MAXIMIZE);
      }
@@ -111,13 +117,46 @@ int main()
     dva = runda.Dodaj_Igraca();
     runda.Smjesti_Igrace(jedan, dva);
 
+    // --------------------------------- EXCEPTIONS HANDLING -------------------------------------------
+
+    here1:
     std::cout<<"Igrac jedan molimo unesite ime spila koji zelite igrati : "<<std::endl;
     std::cin>>user_Input;
-    jedan.set_Deck_Name(user_Input);
+    try{    
+        if(user_Input != "deck1")
+        {
+            throw 101;
+        }
+        else{
+            jedan.set_Deck_Name(user_Input);
+        }
+    }
 
+    catch(int e)
+    {
+        std::cout<<"Caught error "<<e;
+        goto here1;
+    }
+
+    here2:
     std::cout<<"Igrac dva molimo unesite ime spila koji zelite igrati : "<<std::endl;
     std::cin>>user_Input;
-    dva.set_Deck_Name(user_Input);
+    try{    
+        if(user_Input != "deck2")
+        {
+            throw 102;
+        }
+        else{
+            dva.set_Deck_Name(user_Input);
+        }
+    }
+
+    catch(int e){
+        std::cout<<"Caught error "<<e;
+        goto here2;
+   }
+
+   // ----------------------------------------------------------------------------
 
     jedan.Build_Deck(jedan.get_Deck_Name());
     jedan.Shuffle_Deck();
@@ -186,11 +225,9 @@ int main()
         {
             break;
         }
-        Sleep(90);
+        Sleep(900);
         system("CLS");
     }while(1);
 
-
-    system("helloworld.exe");
     return 0;
 }

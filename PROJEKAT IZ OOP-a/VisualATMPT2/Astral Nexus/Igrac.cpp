@@ -401,6 +401,7 @@ void Player::Build_Deck(std::string deck_Name)
             std::cout<<std::endl<<"Vrijednost obrade : "<<obrada.get_Vrijednost()<<std::endl;
             deck.push_back(obrada);
             std::cout<<"Obrada dodana u spil!"<<std::endl;
+            Sleep(20);
         }
         else
         {
@@ -444,6 +445,7 @@ void Player::Shuffle_Deck()
             this->deck[shuffle_two] = obrada;
 
             std::cout<<"Swapped "<<shuffle_one<<" with "<<shuffle_two<<std::endl;
+            Sleep(20);
         }
         else
         {

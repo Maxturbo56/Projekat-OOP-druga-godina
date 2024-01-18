@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <iostream>
 #include <Windows.h>
-
+#include <memory>
 class Player{
 
     // -------------------- Vektori Igrača (Karte u ruci, Karte u špilu, Karte koje su odigrane, Karte na terenu) -------------------- //
